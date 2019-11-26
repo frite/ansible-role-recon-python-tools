@@ -19,6 +19,7 @@
     name: "{{ py2_pip_eggs }}"
     extra_args: --upgrade --ignore-installed
   when: py2_pip_eggs is defined
+  changed_when: false
 
 - name: Install pip3 eggs
   pip:
@@ -26,3 +27,5 @@
     extra_args: --ignore-installed
     executable: pip3
   when: py3_pip_eggs is defined
+  changed_when: false
+
