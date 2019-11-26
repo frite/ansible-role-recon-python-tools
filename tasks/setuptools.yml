@@ -1,0 +1,33 @@
+---
+- name: Install setuptools for python 2
+  pip:
+    name: setuptools
+    extra_args: --ignore-installed
+  changed_when: false
+
+- name: Install setuptools for python 3
+  pip:
+    name: setuptools
+    extra_args: --ignore-installed
+    executable: pip3
+  changed_when: false
+
+- name: Python2 setup.py installs
+  shell: "set -o pipefail; /usr/bin/python2 setup.py install"
+  args:
+    warn: false
+    chdir: "/usr/local/src/{{ item }}/"
+    executable: '/bin/bash'
+  loop: "{{ py2_setup_files }}"
+  when: py2_setup_files is defined
+  changed_when: false
+
+- name: Python3 setup.py installs
+  shell: "set -o pipefail; export {{ locale[ansible_distribution] }} && /usr/bin/python3 setup.py install"
+  args:
+    warn: false
+    chdir: "/usr/local/src/{{ item }}/"
+    executable: '/bin/bash'
+  loop: "{{ py3_setup_files }}"
+  when: py3_setup_files is defined
+  changed_when: false

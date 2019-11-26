@@ -1,0 +1,5 @@
+---
+locale:
+  Ubuntu: "LC_ALL=C.UTF-8"
+  Debian: "LC_ALL=C.UTF-8"
+  CentOS: "LC_ALL=\"en_US.utf8\""

@@ -1,0 +1,47 @@
+---
+- name: Install EPEL in CentOS
+  include_role:
+    name: geerlingguy.repo-epel
+  when: ansible_distribution == 'CentOS'
+
+- name: Register required variables for yum
+  set_fact:
+    "{{ ansible_pkg_mgr }}_packages":
+      - git
+      - python3-pip
+      - python3-setuptools
+      - python2-setuptools
+      - python2-pip
+  when: ansible_pkg_mgr == "yum" or ansible_pkg_mgr == "dnf"
+
+- name: Register packages for APT
+  set_fact:
+    "{{ ansible_pkg_mgr }}_packages":
+      - git
+      - python3-pip
+      - python3-setuptools
+      - python-setuptools
+      - python-pip
+  when: ansible_pkg_mgr == "apt"
+
+- name: Register user packages for yum
+  set_fact:
+    yum_packages: "{{ yum_packages + [ item ] }}"
+  with_items: " {{ py_apt_packages }}"
+  when: py_yum_packages is defined and yum_packages is defined
+
+- name: Register user packages for dnf
+  set_fact:
+    dnf_packages: "{{ dnf_packages + [ item ] }}"
+  with_items: " {{ py_apt_packages }}"
+  when: py_dnf_packages is defined and dnf_packages is defined
+
+- name: Register user packages for apt
+  set_fact:
+    "apt_packages": "{{ apt_packages + [ item ] }}"
+  with_items: " {{ py_apt_packages }}"
+  when: py_apt_packages is defined and apt_packages is defined
+
+- name: Ensure required packages are installed
+  include_role:
+    name: frite.recon_package_manager

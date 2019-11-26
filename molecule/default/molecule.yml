@@ -1,0 +1,81 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+platforms:
+  - name: centos7
+    image: centos:7
+  - name: centos8
+    image: centos:8
+  - name: ubuntu1804
+    image: ubuntu:18.04
+  - name: ubuntu1910
+    image: ubuntu:19.10
+  - name: ubuntu1904
+    image: ubuntu:19.04
+  - name: ubuntu1604
+    image: ubuntu:16.04
+  - name: debian
+    image: debian:buster
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: $HOME/.ansible/roles
+  lint:
+    name: ansible-lint
+  inventory:
+    group_vars:
+      all:
+        py_yum_packages:
+          - 'nmap'
+        py_dnf_packages:
+          - 'nmap'
+        py_apt_packages:
+          - 'nmap'
+        py_clone_tools:
+          bass:
+            name: bass
+            url: https://github.com/Abss0x7tbh/bass.git
+          sublist3r:
+            name: Sublist3r
+            url: https://github.com/aboul3la/Sublist3r.git
+          altdns:
+            name: altdns
+            url: https://github.com/infosec-au/altdns.git
+          censys:
+            name: censys-enumeration
+            url: https://github.com/0xbharath/censys-enumeration.git
+        py3_pip_args:
+          - bass
+          - Sublist3r
+        py2_pip_args:
+          - altdns
+          - censys-enumeration
+        py2_setup_files:
+          - altdns
+        py3_setup_files:
+          - Sublist3r
+        py_soft_links:
+          bass:
+            repo: bass
+            soft_link: bass
+            file: bass.py
+          censys:
+            repo: censys-enumeration
+            soft_link: censys-enumeration
+            file: censys_enumeration.py
+        py2_pip_eggs:
+          - github3.py
+        py3_pip_eggs:
+          - github3.py
+scenario:
+  name: default
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

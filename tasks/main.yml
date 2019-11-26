@@ -1,0 +1,18 @@
+---
+- name: Include general variables
+  include_vars: "main.yml"
+
+- name: Include OS Specific tasks
+  include: "os.yml"
+
+- name: Include Git Clone tasks
+  include: "clone.yml"
+
+- name: Include Pip tasks
+  include: "pip.yml"
+
+- name: Include setup.py tasks
+  include: "setuptools.yml"
+
+- name: Include softlinks tasks
+  include: "softlinks.yml"

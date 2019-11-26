@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  author: Manolis Mavrofidis
+  description: Ansible role to install python 2/3 tools
+  company: The internetz
+  license: BSD
+  role_name: recon_python_tools
+
+  min_ansible_version: 2.8
+  github_branch: master
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+        - disco dingo
+        - eoan
+    - name: Debian
+      versions:
+        - buster
+    - name: EL
+      versions:
+        - 7
+        - 8
+
+  galaxy_tags:
+    - user
+    - package
+    - recon
+    - security
+    - python
+
+dependencies: []

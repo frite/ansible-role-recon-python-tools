@@ -1,0 +1,28 @@
+---
+- name: Install pip requirements
+  pip:
+    requirements: "/usr/local/src/{{ item }}/requirements.txt"
+    extra_args: --ignore-installed
+  loop: "{{ py2_pip_args }}"
+  when: py2_pip_args is defined
+
+- name: Install pip3 requirements
+  pip:
+    requirements: "/usr/local/src/{{ item }}/requirements.txt"
+    extra_args: --ignore-installed
+    executable: pip3
+  loop: "{{ py3_pip_args }}"
+  when: py3_pip_args is defined
+
+- name: Install pip eggs
+  pip:
+    name: "{{ py2_pip_eggs }}"
+    extra_args: --upgrade --ignore-installed
+  when: py2_pip_eggs is defined
+
+- name: Install pip3 eggs
+  pip:
+    name: "{{ py3_pip_eggs }}"
+    extra_args: --ignore-installed
+    executable: pip3
+  when: py3_pip_eggs is defined

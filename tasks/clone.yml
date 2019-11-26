@@ -1,0 +1,10 @@
+---
+- name: Clone tools  # noqa 401
+  git:
+    repo: "{{ item.value.url }}"
+    dest: "/usr/local/src/{{ item.value.name }}"
+    update: true
+    force: true
+  loop: "{{ py_clone_tools|dict2items }}"
+  when: py_clone_tools is defined
+  changed_when: false

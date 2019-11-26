@@ -1,0 +1,12 @@
+---
+- name: Create softlinks
+  file:
+    src: "/usr/local/src/{{ item.value.repo }}/{{ item.value.file }}"
+    dest: "/usr/local/bin/{{ item.value.soft_link }}"
+    owner: root
+    group: root
+    mode: '0755'
+    state: link
+  loop: "{{ py_soft_links|dict2items }}"
+  when: py_soft_links is defined
+  changed_when: false
