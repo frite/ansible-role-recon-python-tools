@@ -70,9 +70,9 @@ provisioner:
             soft_link: censys-enumeration
             file: censys_enumeration.py
         py2_pip_eggs:
-          - github3.py
+          - flask
         py3_pip_eggs:
-          - github3.py
+          - flask
 scenario:
   name: default
 verifier:
