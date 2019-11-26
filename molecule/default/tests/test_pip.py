@@ -15,7 +15,6 @@ def test_pip2_github(host):
     assert 'github3.py' in packages
 
 
-
 def test_test_pip3_github(host):
     ''' Test that github3.py is installed.'''
     pip3_path = host.find_command('pip3')

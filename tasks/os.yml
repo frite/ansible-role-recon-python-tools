@@ -27,19 +27,19 @@
 - name: Register user packages for yum
   set_fact:
     yum_packages: "{{ yum_packages + [ item ] }}"
-  with_items: " {{ py_apt_packages }}"
+  with_items: "{{ py_yum_packages }}"
   when: py_yum_packages is defined and yum_packages is defined
 
 - name: Register user packages for dnf
   set_fact:
     dnf_packages: "{{ dnf_packages + [ item ] }}"
-  with_items: " {{ py_apt_packages }}"
+  with_items: "{{ py_dnf_packages }}"
   when: py_dnf_packages is defined and dnf_packages is defined
 
 - name: Register user packages for apt
   set_fact:
     "apt_packages": "{{ apt_packages + [ item ] }}"
-  with_items: " {{ py_apt_packages }}"
+  with_items: "{{ py_apt_packages }} "
   when: py_apt_packages is defined and apt_packages is defined
 
 - name: Ensure required packages are installed
