@@ -9,7 +9,12 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 def test_pip2_github(host):
     ''' Test that github3.py is installed.'''
-    pip2_path = host.find_command('pip')
+    pip = 'pip'
+    if host.system_info.distribution == 'CentOS' and
+        host.system_info.release > 7:
+            pip = 'pip2'
+
+    pip2_path = host.find_command(pip)
     packages = host.pip_package.get_packages(pip_path=pip2_path)
 
     assert 'Flask' in packages
