@@ -28,4 +28,3 @@
     executable: pip3
   when: py3_pip_eggs is defined
   changed_when: false
-
