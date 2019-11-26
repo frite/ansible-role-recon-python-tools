@@ -12,7 +12,7 @@ def test_pip2_github(host):
     pip2_path = host.find_command('pip')
     packages = host.pip_package.get_packages(pip_path=pip2_path)
 
-    assert 'github3.py' in packages
+    assert 'flask' in packages
 
 
 def test_test_pip3_github(host):
@@ -20,4 +20,4 @@ def test_test_pip3_github(host):
     pip3_path = host.find_command('pip3')
     packages = host.pip_package.get_packages(pip_path=pip3_path)
 
-    assert 'github3.py' in packages
+    assert 'flask' in packages
