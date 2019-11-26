@@ -7,5 +7,6 @@ services:
 install:
   - pip install molecule docker ansible
   - ansible-galaxy install frite.recon_package_manager
+  - ansible-galaxy install geerlingguy.repo-epel
 script:
   - molecule test
