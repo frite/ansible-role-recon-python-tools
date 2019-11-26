@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/frite/ansible-role-recon-python2-tools.svg?branch=master)](https://travis-ci.com/frite/ansible-role-recon-python2-tools)
+[![Build Status](https://travis-ci.com/frite/ansible-role-recon-python-tools.svg?branch=master)](https://travis-ci.com/frite/ansible-role-recon-python-tools)
 
 
 recon_python_tools
