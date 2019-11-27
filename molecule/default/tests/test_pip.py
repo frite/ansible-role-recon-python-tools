@@ -12,7 +12,7 @@ def test_pip2_flask(host):
     pip_bin = 'pip'
 
     if host.system_info.distribution.lower() == 'centos' and \
-            host.system_info.release >= 8:
+            int(host.system_info.release) >= 8:
         pip_bin = 'pip2'
 
     pip2_path = host.find_command(pip_bin)
