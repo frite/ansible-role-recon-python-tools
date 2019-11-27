@@ -18,7 +18,7 @@ def test_pip2_flask(host):
     pip2_path = host.find_command(pip_bin)
     packages = host.pip_package.get_packages(pip_path=pip2_path)
 
-    assert 'Flask' in packages
+    assert 'certifi' in packages
 
 
 def test_test_pip3_flask(host):
